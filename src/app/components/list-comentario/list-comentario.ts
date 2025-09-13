@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { Comentario } from '../../interfaces/comentario';
 import { NgFor } from '@angular/common';
+import { RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-list-comentario',
-  imports: [NgFor],
+  imports: [RouterLink],
   templateUrl: './list-comentario.html',
   styleUrl: './list-comentario.scss'
 })

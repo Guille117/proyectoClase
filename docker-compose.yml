@@ -1,0 +1,12 @@
+services:
+  frontend:
+    image: angular-app   # Nombre de la imagen
+    build:
+      context: .         # Construye desde la carpeta actual
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"      # localhost:4200 -> contenedor:4200
+    volumes:
+      - .:/app           # Sincroniza tu código local con el contenedor
+    command: >
+      sh -c "npm install && npm start"  # Instala dependencias y levanta Angular
