@@ -48,7 +48,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository | lower }}:latest
+          tags: ghcr.io/guille117/proyectoclase:latest
 
       - name: Desplegar en VPS
         uses: appleboy/ssh-action@v1.0.0
