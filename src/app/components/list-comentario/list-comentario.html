@@ -16,14 +16,13 @@
         <th></th>
     </tr>
     <tbody>
-        @for(comentario of listComentarios; track comentario.id){
+        @for(comentario of ListComentarios; track comentario.id){
             <tr>
-                <td><a [routerLink]="['/ver', comentario.id]"> {{ comentario.titulo }} </a> </td>
-            <td>{{ comentario.titulo }}</td>
+            <td><a [routerLink]="['/ver', comentario.id]"> {{ comentario.titulo }} </a> </td>
             <td>{{ comentario.creador }}</td>
             <td>{{ comentario.fechaCreacion }}</td>
             <td><button class="btn btn-warning btn-sm float-end"> Editar</button></td>
-            <td><button class="btn btn-danger btn-sm float-end">Eliminar</button></td>
+            <td><button class="btn btn-danger btn-sm float-end" (click)="eliminarComentario(comentario.id)">Eliminar</button></td>
         </tr>
         }
         
@@ -31,7 +30,7 @@
     </tbody>
 
 </table>
-@if (listComentarios.length === 0){
+@if (ListComentarios.length === 0){
 <div class="row mt-5">
     <h5>No hay comentarios disponibles</h5>
 </div>

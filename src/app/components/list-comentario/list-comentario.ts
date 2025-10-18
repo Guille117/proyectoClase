@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Comentario } from '../../interfaces/comentario';
 import { NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { ComentarioService } from '../../services/comentario';
 
 
 @Component({
@@ -11,10 +12,34 @@ import { RouterLink } from '@angular/router';
   styleUrl: './list-comentario.scss'
 })
 export class ListComentario {
-  listComentarios: Comentario[] = [
-    {titulo: 'Comentario 1', creador: 'usuario 1', texto: 'comentario de prueba', fechaCreacion: new Date('2023-01-01')},
-    {titulo: 'Comentario 2', creador: 'usuario 1', texto: 'comentario de prueba', fechaCreacion: new Date('2023-01-01')},
-    {titulo: 'Comentario 3', creador: 'usuario 1', texto: 'comentario de prueba', fechaCreacion: new Date('2023-01-01')},
-    {titulo: 'Comentario 4', creador: 'usuario 1', texto: 'comentario de prueba', fechaCreacion: new Date('2023-01-01')}
-  ]
+  ListComentarios: Comentario[] =[];
+
+constructor(private readonly ComentarioServ: ComentarioService) { }
+
+  ngOnInit() {
+    this.getComentarios();
+  }
+
+  getComentarios() {
+    this.ComentarioServ.obtenerComentarios().subscribe({
+      next: (data) => {
+        this.ListComentarios = data;
+      },
+      error: (error) => {
+        console.error('Error al obtener los comentarios:', error);
+      }
+    });
+  }
+
+  eliminarComentario(id: any) {
+    this.ComentarioServ.eliminarComentario(id).subscribe({
+      next: (data) => {
+        console.log('Comentario eliminado:', data);
+        this.getComentarios();
+      },
+      error: (error) => {
+        console.error('Error al eliminar el comentario:', error);
+      }
+    });
+  }
 }

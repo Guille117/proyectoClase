@@ -9,10 +9,5 @@ import { RouterLink } from '@angular/router';
 })
 export class Navbar {
   img = 'imagenes/logo_umg.png';
-
-  constructor() {}
-
-  ngOnInit() {
-    // Código a ejecutar al inicializar el componente
-  }
+  
 }
